@@ -1,18 +1,18 @@
 # Author and Git
 Project: Little Daemon
-License: [MIT License](https://pages.github.com/).
+License: [MIT License]([https://pages.github.com/](https://github.com/XENNI-tech/LittleDaemonLinux#mit-license)).
 Version: 1.0.0.0
 Author: B1cc
 GitHub: https://github.com/XENNI-tech/LittleDaemonLinux
 ©2023 - Likon aka b1cc
 
-# Reason for it
+## Reason for it
 I created the "Little Daemon" app to empower users with essential cybersecurity and information-gathering tools. In an increasingly digital world, having quick access to IP data, WHOIS lookups, DNS queries, subdomain enumeration, and username checks is invaluable for security and research. This app aims to provide a user-friendly, all-in-one solution for users to better understand and protect their digital footprint. It was also a unique and wonderful experience in which I learned a lot, and I would like to come back with many revisions to this project.
 
-# Description
+## Description
 The code provided is a C# console application named "Little Daemon" that offers a set of cybersecurity and information gathering tools. Users can interact with the application by selecting various options, such as retrieving information about an IP address, performing WHOIS lookups on domains, conducting DNS lookups, enumerating subdomains, checking for the existence of a username on popular websites, and scanning open ports on a host.
 
-# Key Features:
+## Key Features:
 
 Interactive menu for user selection of different tools.
 Utilizes external services like Google DNS and SecurityTrails for subdomain enumeration.
@@ -22,7 +22,7 @@ Scans for open ports on a specified host.
 Checks for the existence of a username on various social media and web platforms.
 The code is accompanied by a license (MIT License) and detailed explanations for each tool's functionality. It provides a command-line interface for users to access various cybersecurity-related utilities, making it a versatile tool for informational and diagnostic purposes.
 
-# MIT License
+### MIT License
 Copyright (c) 2023 Likon aka b1cc
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
