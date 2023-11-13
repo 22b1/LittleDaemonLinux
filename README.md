@@ -22,6 +22,8 @@ Scans for open ports on a specified host.
 Checks for the existence of a username on various social media and web platforms.
 The code is accompanied by a license (MIT License) and detailed explanations for each tool's functionality. It provides a command-line interface for users to access various cybersecurity-related utilities, making it a versatile tool for informational and diagnostic purposes.
 
+## Download Release
+
 ### MIT License
 Copyright (c) 2023 Likon aka b1cc
 
