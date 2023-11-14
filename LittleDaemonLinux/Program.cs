@@ -66,6 +66,7 @@ class Program
             Console.Clear();
             while (true)
             {
+                Console.Title = "Little Daemon | v1.0.0.0 | Made by Likon | Linux | macOS | Windows";
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.DarkMagenta;
                 Console.WriteLine(" /$$       /$$   /$$     /$$     /$$");
@@ -85,22 +86,21 @@ class Program
                 Console.WriteLine("| $$  | $$ /$$__  $$| $$_____/| $$ | $$ | $$| $$  | $$| $$  | $$");
                 Console.WriteLine("| $$$$$$$/|  $$$$$$$|  $$$$$$$| $$ | $$ | $$|  $$$$$$/| $$  | $$");
                 Console.WriteLine("|_______/  \\_______/ \\_______/|__/ |__/ |__/ \\______/ |__/  |__/");
-                Console.ResetColor();
-                Console.WriteLine("v1.0.0.0 | Made by Likon | Linux | macOS | Windows ");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("Welcome to Little Daemon Menu:");
                 Console.WriteLine("[01] Show information about an IP Address");
                 Console.WriteLine("[02] WHOIS and other information about a domain");
                 Console.WriteLine("[03] DNS Lookup");
-                Console.WriteLine("[04] Subdomain Enumeration");
+                Console.WriteLine("[04] Subdomain Enumeration ( API Key Required )");
                 Console.WriteLine("[05] Check Popular Sites for that username");
                 Console.WriteLine("[06] Scan for open ports on a host");
                 Console.WriteLine("[07] Clear Little Daemon Console");
                 Console.WriteLine("[08] Show credits and other information about Little Daemon");
                 Console.WriteLine("[09] Safely Exit Little Daemon");
-                Console.WriteLine("[10] Delete API Key");
+                Console.WriteLine("[10] API Key Documentation");
+                Console.WriteLine("[11] Delete API Key");
 
-                Console.Write("Please enter your choice (1-10): ");
+                Console.Write("Please enter your choice (1-11): ");
                 string choice = Console.ReadLine();
 
                 switch (choice)
@@ -240,6 +240,13 @@ class Program
                         return;
 
                     case "10":
+                        Console.ResetColor();
+                        Console.WriteLine("\nWhy do you need a API Key?\n\nWe use SecurityTrails to improve our Subdomain Enumeration. You can use Little Daemon even if you don't have a API Key, but without Subdomain Enumeration, because it is required.\nHow to get a API Key:\n[1] Go to https://securitytrails.com and make an account with TempMail.org.\n[2] At 'Company' tou type 'None'.\n[3] You will recive a Activation email adress at your Temp-Mail, use that link, and then the first thing that you shoud see is your API Key, copy it.\n[+] A API Key is avalibe forever, but with a limited of 50 uses/per mounth. You can make unlimited accounts using Temp-Mail.org\n\n");
+                        Console.WriteLine("Press Enter to continue...");
+                        Console.ReadLine();
+                        break;
+
+                    case "11":
                         if (!string.IsNullOrEmpty(GetApiKey()))
                         {
                             Console.WriteLine("Are you sure you want to delete your API key? (Y/N)");
@@ -272,7 +279,7 @@ class Program
 
                     default:
                         Console.ForegroundColor = ConsoleColor.DarkRed;
-                        Console.WriteLine("Invalid choice. Please select a valid option (1-10).");
+                        Console.WriteLine("Invalid choice. Please select a valid option (1-11).");
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.WriteLine("Press Enter to continue...");
                         Console.ReadLine();
