@@ -1,10 +1,25 @@
 ﻿/*
-SOFTWARE MADE BY Likon aka b1cc
-For any help please contact me on my Discord (b1cc)
-DO NOT CLAIM THIS PROJECT AS YOURS AS IT IS NOT.
- 
- 
- */
+MIT License
+
+Copyright (c) 2023 Likon aka b1cc
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS," WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
+/*
+Project: Little Daemon
+Description: 
+License: MIT License (See LICENSE file for details)
+Version: 1.0.0.0
+Author: B1cc
+GitHub: https://github.com/XENNI-tech/LittleDaemonLinux
+©2023 - Likon aka b1cc
+*/
+
 
 using System;
 using System.Net.Http;
@@ -14,21 +29,260 @@ using Newtonsoft.Json.Linq;
 using System.Net;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using System.IO;
+using System.Collections.Generic;
 
-internal class Program
+class Program
 {
-    private static async Task Main(string[] args)
-    {
-        string apiKey = ""; // ADD YOUR SECURITY TRIALS API KEY HERE
-        /*
-         In order to get your API Key, you will need a email adress. Don't worry, you can use a temporary email adress
-        BUT NOT your GMAIL adress, because it needs to be a "BUISENIESS" one
 
-        You will have to go to this link: https://securitytrails.com
-        Make an account under a tempmail, and go ahead, and replace it with your API key.
-         
-         */
-        static void CenterText(string text)
+    static async Task Main(string[] args)
+    {
+        await RunApplication();
+    }
+
+    private static string GetApiKey()
+    {
+        string apiKeyFilePath = "apikey.txt";
+        if (File.Exists(apiKeyFilePath))
+        {
+            return File.ReadAllText(apiKeyFilePath).Trim();
+        }
+        else
+        {
+            return string.Empty;
+        }
+    }
+
+    private static void SaveApiKey(string apiKey)
+    {
+        string apiKeyFilePath = "apikey.txt";
+        File.WriteAllText(apiKeyFilePath, apiKey);
+    }
+
+    private static async Task RunApplication()
+    {
+        while (true)
+        {
+            Console.Clear();
+            while (true)
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine(" /$$       /$$   /$$     /$$     /$$");
+                Console.WriteLine("| $$      |__/  | $$    | $$    | $$");
+                Console.WriteLine("| $$       /$$ /$$$$$$ /$$$$$$  | $$  /$$$$$$");
+                Console.WriteLine("| $$      | $$|_  $$_/|_  $$_/  | $$ /$$__  $$");
+                Console.WriteLine("| $$      | $$  | $$    | $$    | $$| $$$$$$$$");
+                Console.WriteLine("| $$      | $$  | $$ /$$| $$ /$$| $$| $$_____/");
+                Console.WriteLine("| $$$$$$$$| $$  |  $$$$/|  $$$$/| $$|  $$$$$$$");
+                Console.WriteLine("|________/|__/   \\___/   \\___/  |__/ \\_______/");
+                Console.WriteLine("");
+                Console.WriteLine(" /$$$$$$$");
+                Console.WriteLine("| $$__  $$");
+                Console.WriteLine("| $$  \\ $$  /$$$$$$   /$$$$$$  /$$$$$$/$$$$   /$$$$$$  /$$$$$$$");
+                Console.WriteLine("| $$  | $$ |____  $$ /$$__  $$| $$_  $$_  $$ /$$__  $$| $$__  $$");
+                Console.WriteLine("| $$  | $$  /$$$$$$$| $$$$$$$$| $$ \\ $$ \\ $$| $$  \\ $$| $$  \\ $$");
+                Console.WriteLine("| $$  | $$ /$$__  $$| $$_____/| $$ | $$ | $$| $$  | $$| $$  | $$");
+                Console.WriteLine("| $$$$$$$/|  $$$$$$$|  $$$$$$$| $$ | $$ | $$|  $$$$$$/| $$  | $$");
+                Console.WriteLine("|_______/  \\_______/ \\_______/|__/ |__/ |__/ \\______/ |__/  |__/");
+                Console.ResetColor();
+                Console.WriteLine("v1.0.0.0 | Made by Likon | Linux | macOS | Windows ");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("Welcome to Little Daemon Menu:");
+                Console.WriteLine("[01] Show information about an IP Address");
+                Console.WriteLine("[02] WHOIS and other information about a domain");
+                Console.WriteLine("[03] DNS Lookup");
+                Console.WriteLine("[04] Subdomain Enumeration");
+                Console.WriteLine("[05] Check Popular Sites for that username");
+                Console.WriteLine("[06] Scan for open ports on a host");
+                Console.WriteLine("[07] Clear Little Daemon Console");
+                Console.WriteLine("[08] Show credits and other information about Little Daemon");
+                Console.WriteLine("[09] Safely Exit Little Daemon");
+                Console.WriteLine("[10] Delete API Key");
+
+                Console.Write("Please enter your choice (1-10): ");
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        Console.Write("Enter the target IP address: ");
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        string ipAddress = Console.ReadLine();
+                        Console.ForegroundColor = ConsoleColor.White;
+                        string ipInfo = await GetIPInfo(ipAddress);
+                        Console.WriteLine(ipInfo);
+                        Console.WriteLine("Press Enter to continue...");
+                        Console.ReadLine();
+                        break;
+
+                    case "2":
+                        Console.Write("Enter the target domain: ");
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        string domain = Console.ReadLine();
+                        Console.ForegroundColor = ConsoleColor.White;
+                        string whoisInfo = GetWhoisInfo(domain);
+                        Console.WriteLine(whoisInfo);
+                        Console.WriteLine("Press Enter to continue...");
+                        Console.ReadLine();
+                        break;
+
+                    case "3":
+                        Console.Write("Enter the target DNS address: ");
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        string dnsAddress = Console.ReadLine();
+                        Console.ForegroundColor = ConsoleColor.White;
+                        string dnsInfo = GetDnsLookupInfo(dnsAddress);
+                        Console.WriteLine("IP Address: " + dnsInfo);
+                        Console.WriteLine("Press Enter to continue...");
+                        Console.ReadLine();
+                        break;
+
+                    case "4":
+                        Console.Write("Enter the target domain: ");
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        string subdomainDomain = Console.ReadLine();
+                        Console.ForegroundColor = ConsoleColor.White;
+                        string subdomainInfo = await EnumerateSubdomains(subdomainDomain);
+                        Console.WriteLine(subdomainInfo);
+                        Console.WriteLine("Press Enter to continue...");
+                        Console.ReadLine();
+                        break;
+
+                    case "5":
+                        Console.Write("Enter the username to check: ");
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        string username = Console.ReadLine();
+                        Console.ForegroundColor = ConsoleColor.White;
+                        string userExistenceInfo = await SearchUserAsync(username);
+                        Console.WriteLine(userExistenceInfo);
+                        Console.WriteLine("Press Enter to continue...");
+                        Console.ReadLine();
+                        break;
+
+                    case "6":
+                        Console.Write("Enter the host to scan: ");
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        string hostToScan = Console.ReadLine();
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write("Enter the start port: ");
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        if (int.TryParse(Console.ReadLine(), out int startPort))
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                            Console.Write("Enter the end port: ");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            if (int.TryParse(Console.ReadLine(), out int endPort))
+                            {
+                                await ScanPorts(hostToScan, startPort, endPort);
+                                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                Console.WriteLine("Port scanning completed.");
+                                Console.ForegroundColor = ConsoleColor.White;
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.DarkRed;
+                                Console.WriteLine("Invalid end port.");
+                                Console.ForegroundColor = ConsoleColor.White;
+                            }
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                            Console.WriteLine("Invalid start port.");
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("Press Enter to continue...");
+                        Console.ReadLine();
+                        break;
+
+
+                    case "7":
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("Console cleared.");
+                        Console.WriteLine("Press Enter to continue...");
+                        Console.ReadLine();
+                        break;
+
+                    case "8":
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("You selected 'credits'.");
+                        Console.ResetColor();
+                        Console.Write("[+] Creator ");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write("Likon");
+                        Console.ResetColor();
+                        Console.WriteLine();
+                        Console.Write("[+] Tools and methods by ");
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.Write("Molotov");
+                        Console.ResetColor();
+                        Console.WriteLine();
+                        Console.Write("[+] Secured by ");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write("rXXDw4");
+                        Console.ResetColor();
+                        Console.WriteLine();
+                        Console.Write("[+] Uploaded on ");
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.Write("cheater.fun | github.com | And Other by third party");
+                        Console.ResetColor();
+                        Console.WriteLine();
+                        Console.WriteLine("[+] This Program is FREE TO USE!");
+                        Console.WriteLine("Press Enter to continue...");
+                        Console.ReadLine();
+                        break;
+
+                    case "9":
+                        Console.WriteLine("Goodbye!");
+                        return;
+
+                    case "10":
+                        if (!string.IsNullOrEmpty(GetApiKey()))
+                        {
+                            Console.WriteLine("Are you sure you want to delete your API key? (Y/N)");
+                            string confirmation = Console.ReadLine();
+                            if (confirmation.Equals("Y", StringComparison.OrdinalIgnoreCase))
+                            {
+                                DeleteApiKey();
+                                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                Console.WriteLine("API key deleted.");
+                                Console.ForegroundColor = ConsoleColor.White;
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                Console.WriteLine("API key not deleted.");
+                                Console.ForegroundColor = ConsoleColor.White;
+                            }
+                            Console.WriteLine("Press Enter to continue...");
+                            Console.ReadLine();
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                            Console.WriteLine("You do not have an API key to delete.");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.WriteLine("Press Enter to continue...");
+                            Console.ReadLine();
+                        }
+                        break;
+
+                    default:
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine("Invalid choice. Please select a valid option (1-10).");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("Press Enter to continue...");
+                        Console.ReadLine();
+                        break;
+                }
+            }
+        }
+    }
+
+     static void CenterText(string text)
         {
             int screenWidth = Console.WindowWidth;
             int stringWidth = text.Length;
@@ -38,190 +292,7 @@ internal class Program
             Console.WriteLine(centeredText);
         }
 
-        while (true)
-        {
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.DarkMagenta;
-            Console.WriteLine(" /$$       /$$   /$$     /$$     /$$");
-            Console.WriteLine("| $$      |__/  | $$    | $$    | $$");
-            Console.WriteLine("| $$       /$$ /$$$$$$ /$$$$$$  | $$  /$$$$$$");
-            Console.WriteLine("| $$      | $$|_  $$_/|_  $$_/  | $$ /$$__  $$");
-            Console.WriteLine("| $$      | $$  | $$    | $$    | $$| $$$$$$$$");
-            Console.WriteLine("| $$      | $$  | $$ /$$| $$ /$$| $$| $$_____/");
-            Console.WriteLine("| $$$$$$$$| $$  |  $$$$/|  $$$$/| $$|  $$$$$$$");
-            Console.WriteLine("|________/|__/   \\___/   \\___/  |__/ \\_______/");
-            Console.WriteLine("");
-            Console.WriteLine(" /$$$$$$$");
-            Console.WriteLine("| $$__  $$");
-            Console.WriteLine("| $$  \\ $$  /$$$$$$   /$$$$$$  /$$$$$$/$$$$   /$$$$$$  /$$$$$$$");
-            Console.WriteLine("| $$  | $$ |____  $$ /$$__  $$| $$_  $$_  $$ /$$__  $$| $$__  $$");
-            Console.WriteLine("| $$  | $$  /$$$$$$$| $$$$$$$$| $$ \\ $$ \\ $$| $$  \\ $$| $$  \\ $$");
-            Console.WriteLine("| $$  | $$ /$$__  $$| $$_____/| $$ | $$ | $$| $$  | $$| $$  | $$");
-            Console.WriteLine("| $$$$$$$/|  $$$$$$$|  $$$$$$$| $$ | $$ | $$|  $$$$$$/| $$  | $$");
-            Console.WriteLine("|_______/  \\_______/ \\_______/|__/ |__/ |__/ \\______/ |__/  |__/");
-            Console.WriteLine("");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("Welcome to Little Daemon Menu:");
-            Console.WriteLine("[1] iplocate - Show information about an IP Address");
-            Console.WriteLine("[2] host_search - WHOIS and other information about a domain");
-            Console.WriteLine("[3] dnslk - DNS Lookup");
-            Console.WriteLine("[4] subdo - Subdomain Enumeration");
-            Console.WriteLine("[5] usercon - Check Popular Sites for that username");
-            Console.WriteLine("[6] clear - Clear Little Daemon Console");
-            Console.WriteLine("[7] exit - Safely Exit Little Daemon");
-            Console.WriteLine("[8] portscan - Scan for open ports on a host");
-            Console.WriteLine("[9] credits - Show credits and other information about Little Daemon");
-            CenterText("v1.0.0.0 | Made by Likon | Linux | macOS | Windows");
-
-            Console.Write("Please enter your choice (1-9): ");
-            string choice = Console.ReadLine();
-
-            switch (choice)
-            {
-                case "1":
-                    Console.Write("Enter the target IP address: ");
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    string ipAddress = Console.ReadLine();
-                    Console.ForegroundColor = ConsoleColor.White;
-                    string ipInfo = await GetIPInfo(ipAddress);
-                    Console.WriteLine(ipInfo);
-                    Console.WriteLine("Press Enter to continue...");
-                    Console.ReadLine();
-                    break;
-
-                case "2":
-                    Console.Write("Enter the target domain: ");
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    string domain = Console.ReadLine();
-                    Console.ForegroundColor = ConsoleColor.White;
-                    string whoisInfo = GetWhoisInfo(domain);
-                    Console.WriteLine(whoisInfo);
-                    Console.WriteLine("Press Enter to continue...");
-                    Console.ReadLine();
-                    break;
-
-                case "3":
-                    Console.Write("Enter the target DNS address: ");
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    string dnsAddress = Console.ReadLine();
-                    Console.ForegroundColor = ConsoleColor.White;
-                    string dnsInfo = GetDnsLookupInfo(dnsAddress);
-                    Console.WriteLine("IP Address: " + dnsInfo);
-                    Console.WriteLine("Press Enter to continue...");
-                    Console.ReadLine();
-                    break;
-
-                case "4":
-                    Console.Write("Enter the target domain: ");
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    string subdomainDomain = Console.ReadLine();
-                    Console.ForegroundColor = ConsoleColor.White;
-                    string subdomainInfo = await EnumerateSubdomains(subdomainDomain);
-                    Console.WriteLine(subdomainInfo);
-                    Console.WriteLine("Press Enter to continue...");
-                    Console.ReadLine();
-                    break;
-
-                case "5":
-                    Console.Write("Enter the username to check: ");
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    string username = Console.ReadLine();
-                    Console.ForegroundColor = ConsoleColor.White;
-                    string userExistenceInfo = await SearchUserAsync(username);
-                    Console.WriteLine(userExistenceInfo);
-                    Console.WriteLine("Press Enter to continue...");
-                    Console.ReadLine();
-                    break;
-
-                case "6":
-                    Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("Console cleared.");
-                    Console.WriteLine("Press Enter to continue...");
-                    Console.ReadLine();
-                    break;
-
-                case "7":
-                    Console.WriteLine("Goodbye!");
-                    return;
-
-                case "8":
-                    Console.Write("Enter the host to scan: ");
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    string hostToScan = Console.ReadLine();
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write("Enter the start port: ");
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    if (int.TryParse(Console.ReadLine(), out int startPort))
-                    {
-                        Console.ForegroundColor = ConsoleColor.DarkRed;
-                        Console.Write("Enter the end port: ");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        if (int.TryParse(Console.ReadLine(), out int endPort))
-                        {
-                            await ScanPorts(hostToScan, startPort, endPort);
-                            Console.ForegroundColor = ConsoleColor.DarkGreen;
-                            Console.WriteLine("Port scanning completed.");
-                            Console.ForegroundColor = ConsoleColor.White;
-                        }
-                        else
-                        {
-                            Console.ForegroundColor = ConsoleColor.DarkRed;
-                            Console.WriteLine("Invalid end port.");
-                            Console.ForegroundColor = ConsoleColor.White;
-                        }
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.DarkRed;
-                        Console.WriteLine("Invalid start port.");
-                        Console.ForegroundColor = ConsoleColor.White;
-                    }
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("Press Enter to continue...");
-                    Console.ReadLine();
-                    break;
-
-                case "9":
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("You selected 'credits'.");
-                    Console.ResetColor();
-                    Console.Write("[+] Creator ");
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.Write("Likon");
-                    Console.ResetColor();
-                    Console.WriteLine();
-                    Console.Write("[+] Tools and methods by ");
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.Write("Molotov");
-                    Console.ResetColor();
-                    Console.WriteLine();
-                    Console.Write("[+] Secured by ");
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.Write("rXXDw4");
-                    Console.ResetColor();
-                    Console.WriteLine();
-                    Console.Write("[+] Uploaded on ");
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.Write("cheater.fun | github.com | And Other by third party");
-                    Console.ResetColor();
-                    Console.WriteLine();
-                    Console.WriteLine("[+] This Program is FREE TO USE!");
-                    Console.WriteLine("Press Enter to continue...");
-                    Console.ReadLine();
-                    break;
-
-                default:
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    Console.WriteLine("Invalid choice. Please select a valid option (1-9).");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("Press Enter to continue...");
-                    Console.ReadLine();
-                    break;
-            }
-        }
-
-        async Task<string> GetIPInfo(string ipAddress)
+        static async Task<string> GetIPInfo(string ipAddress)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -240,7 +311,16 @@ internal class Program
             }
         }
 
-        async Task ScanPorts(string host, int startPort, int endPort)
+    private static void DeleteApiKey()
+    {
+        string apiKeyFilePath = "apikey.txt";
+        if (File.Exists(apiKeyFilePath))
+        {
+            File.Delete(apiKeyFilePath);
+        }
+    }
+
+    static async Task ScanPorts(string host, int startPort, int endPort)
         {
             var tasks = new List<Task>();
             var openPorts = new List<int>();
@@ -270,7 +350,7 @@ internal class Program
             }
         }
 
-        async Task ScanPortAsync(string host, int port, List<int> openPorts, List<int> closedPorts)
+    static async Task ScanPortAsync(string host, int port, List<int> openPorts, List<int> closedPorts)
         {
             using (TcpClient client = new TcpClient())
             {
@@ -287,7 +367,7 @@ internal class Program
         }
 
 
-        string GetDnsLookupInfo(string dnsAddress)
+    static string GetDnsLookupInfo(string dnsAddress)
         {
             try
             {
@@ -302,7 +382,7 @@ internal class Program
             }
         }
 
-        string FormatIPInfo(string json)
+    static string FormatIPInfo(string json)
         {
             JObject data = JObject.Parse(json);
 
@@ -319,7 +399,7 @@ internal class Program
             return formattedInfo;
         }
 
-        string GetWhoisInfo(string domain)
+    static string GetWhoisInfo(string domain)
         {
             try
             {
@@ -345,7 +425,7 @@ internal class Program
             }
         }
 
-        async Task<string> SearchUserAsync(string username)
+    static  async Task<string> SearchUserAsync(string username)
         {
             using (HttpClient httpClient = new HttpClient())
             {
@@ -407,7 +487,7 @@ internal class Program
             }
         }
 
-        string GetPlatformName(string url)
+    static string GetPlatformName(string url)
         {
             if (url.Contains("facebook")) return $"Facebook | {url}";
             if (url.Contains("twitter")) return $"Twitter | {url}";
@@ -428,45 +508,54 @@ internal class Program
             return url;
         }
 
-        async Task<string> EnumerateSubdomains(string domain)
+    static async Task<string> EnumerateSubdomains(string domain)
+    {
+        string apiKey = GetApiKey();
+
+        if (string.IsNullOrEmpty(apiKey))
         {
-            try
-            {
-                string result = await QueryGoogleDNS(domain);
-                string subdomainResult = await QuerySecurityTrails(domain);
-
-                if (result.StartsWith("Error"))
-                {
-                    return result;
-                }
-
-                StringBuilder sb = new StringBuilder();
-                sb.AppendLine(FormatDnsResponse(result));
-
-                if (subdomainResult.StartsWith("Error"))
-                {
-                    sb.AppendLine(subdomainResult);
-                }
-                else
-                {
-                    sb.AppendLine(FormatSecurityTrailsResponse(subdomainResult));
-                }
-
-                sb.AppendLine("\n=== SUBDOMAIN ENUMERATION END ===");
-                return sb.ToString();
-            }
-            catch (Exception ex)
-            {
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-                return "Error: " + ex.Message;
-                Console.ForegroundColor = ConsoleColor.White;
-            }
+            Console.WriteLine("Please enter your API key:");
+            apiKey = Console.ReadLine();
+            SaveApiKey(apiKey);
         }
 
+        try
+        {
+            string result = await QueryGoogleDNS(domain);
+            string subdomainResult = await QuerySecurityTrails(domain, apiKey);
+
+            if (result.StartsWith("Error"))
+            {
+                return result;
+            }
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(FormatDnsResponse(result));
+
+            if (subdomainResult.StartsWith("Error"))
+            {
+                sb.AppendLine(subdomainResult);
+            }
+            else
+            {
+                sb.AppendLine(FormatSecurityTrailsResponse(subdomainResult));
+            }
+
+            sb.AppendLine("\n=== SUBDOMAIN ENUMERATION END ===");
+            return sb.ToString();
+        }
+        catch (Exception ex)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            return "Error: " + ex.Message;
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+    }
 
 
 
-        async Task<string> QueryGoogleDNS(string domain)
+
+    static async Task<string> QueryGoogleDNS(string domain)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -484,27 +573,26 @@ internal class Program
             }
         }
 
-        async Task<string> QuerySecurityTrails(string domain)
+    static async Task<string> QuerySecurityTrails(string domain, string apiKey)
+    {
+        using (HttpClient clientS = new HttpClient())
         {
-            using (HttpClient clientS = new HttpClient())
+            clientS.DefaultRequestHeaders.Add("apikey", apiKey);
+            string apiUrl = $"https://api.securitytrails.com/v1/domain/{domain}/subdomains";
+            HttpResponseMessage responseS = await clientS.GetAsync(apiUrl);
+
+            if (responseS.IsSuccessStatusCode)
             {
-                clientS.DefaultRequestHeaders.Add("apikey", apiKey);
-                string apiUrl = $"https://api.securitytrails.com/v1/domain/{domain}/subdomains";
-                HttpResponseMessage responseS = await clientS.GetAsync(apiUrl);
-
-                if (responseS.IsSuccessStatusCode)
-                {
-                    return await responseS.Content.ReadAsStringAsync();
-                }
-
-
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-                return "Error fetching subdomains.";
-                Console.ForegroundColor = ConsoleColor.White;
+                return await responseS.Content.ReadAsStringAsync();
             }
-        }
 
-        string FormatDnsResponse(string responseJson)
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            return "Error fetching subdomains.";
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+    }
+
+    static string FormatDnsResponse(string responseJson)
         {
             JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(responseJson);
 
@@ -545,7 +633,7 @@ internal class Program
             return sb.ToString();
         }
 
-        string FormatSecurityTrailsResponse(string responseJson)
+    static  string FormatSecurityTrailsResponse(string responseJson)
         {
             JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(responseJson);
 
@@ -570,5 +658,4 @@ internal class Program
 
             return sb.ToString();
         }
-    }
 }
