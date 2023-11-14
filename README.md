@@ -34,8 +34,7 @@ cd LittleDaemonLinux
 In order to execute it, make sure that you have both permissions(read-and-write)
 ### Using *wget*
 ```
-su
-wget https://github.com/XENNI-tech/LittleDaemonLinux/releases/download/Linux/LittleDaemonLinux
+sudo wget https://github.com/XENNI-tech/LittleDaemonLinux/releases/download/Linux/LittleDaemonLinux
 ./LittleDaemonLinux
 ```
 
