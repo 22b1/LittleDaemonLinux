@@ -1,10 +1,5 @@
 # Author and Git
-Project: Little Daemon
-License: [MIT License]([https://pages.github.com/](https://github.com/XENNI-tech/LittleDaemonLinux#mit-license)).
-Version: 1.0.0.0
-Author: B1cc
-GitHub: https://github.com/XENNI-tech/LittleDaemonLinux
-©2023 - Likon aka b1cc
+Project: Little Daemon License: [MIT License]([https://pages.github.com/](https://github.com/XENNI-tech/LittleDaemonLinux#mit-license)). | Version: 1.0.0.0 | Author: B1cc | ©2023 - Likon aka b1cc
 
 ## Reason for it
 I created the "Little Daemon" app to empower users with essential cybersecurity and information-gathering tools. In an increasingly digital world, having quick access to IP data, WHOIS lookups, DNS queries, subdomain enumeration, and username checks is invaluable for security and research. This app aims to provide a user-friendly, all-in-one solution for users to better understand and protect their digital footprint. It was also a unique and wonderful experience in which I learned a lot, and I would like to come back with many revisions to this project.
@@ -23,6 +18,7 @@ Checks for the existence of a username on various social media and web platforms
 The code is accompanied by a license (MIT License) and detailed explanations for each tool's functionality. It provides a command-line interface for users to access various cybersecurity-related utilities, making it a versatile tool for informational and diagnostic purposes.
 
 ## Download Release
+[Linux Release]([https://github.com/XENNI-tech/LittleDaemonLinux/releases/tag/Linux))
 
 ### MIT License
 Copyright (c) 2023 Likon aka b1cc
