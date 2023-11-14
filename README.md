@@ -20,14 +20,14 @@ The code is accompanied by a license (MIT License) and detailed explanations for
 ## Download for Linux
 ### Installation for Linux(deb)
 ```
-sudo apt-get install git
+wget https://github.com/XENNI-tech/LittleDaemonLinux/releases/download/Linux/LittleDaemonLinux
 cd LittleDaemonLinux
 ./LittleDaemonLinux
 ```
 
 ### Installation for Temux
 ```
-pkg install git
+wget https://github.com/XENNI-tech/LittleDaemonLinux/releases/download/Linux/LittleDaemonLinux
 cd LittleDaemonLinux
 ./LittleDaemonLinux
 ```
