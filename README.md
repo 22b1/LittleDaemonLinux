@@ -26,7 +26,7 @@ cd LittleDaemonLinux
 ```
 ### Using *curl*
 ```
-curl [http://example.com/file.tar](https://github.com/XENNI-tech/LittleDaemonLinux/releases/download/Linux/LittleDaemonLinux) -o /path/to/dir/LittleDaemonLinux
+curl https://github.com/XENNI-tech/LittleDaemonLinux/releases/download/Linux/LittleDaemonLinux -o /path/to/dir/LittleDaemonLinux
 cd LittleDaemonLinux
 ./LittleDaemonLinux
 ```
