@@ -17,17 +17,16 @@ Scans for open ports on a specified host.
 Checks for the existence of a username on various social media and web platforms.
 The code is accompanied by a license (MIT License) and detailed explanations for each tool's functionality. It provides a command-line interface for users to access various cybersecurity-related utilities, making it a versatile tool for informational and diagnostic purposes.
 
-## Download for Linux
-### Installation for Linux(deb)
+## Download for Linux(any)
+### Using *wget*
 ```
 wget https://github.com/XENNI-tech/LittleDaemonLinux/releases/download/Linux/LittleDaemonLinux
 cd LittleDaemonLinux
 ./LittleDaemonLinux
 ```
-
-### Installation for Temux
+### Using *curl*
 ```
-wget https://github.com/XENNI-tech/LittleDaemonLinux/releases/download/Linux/LittleDaemonLinux
+curl [http://example.com/file.tar](https://github.com/XENNI-tech/LittleDaemonLinux/releases/download/Linux/LittleDaemonLinux) -o /path/to/dir/LittleDaemonLinux
 cd LittleDaemonLinux
 ./LittleDaemonLinux
 ```
