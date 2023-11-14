@@ -1,4 +1,3 @@
-m0juygCy_ZScOepYcE-a26-ETP_TM-gh
 # Author and Git
 Project: Little Daemon License: [MIT License](https://github.com/XENNI-tech/LittleDaemonLinux#mit-license/). | Version: 1.0.0.0 | Author: B1cc | ©2023 - Likon aka b1cc
 
