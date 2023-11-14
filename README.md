@@ -30,6 +30,14 @@ curl https://github.com/XENNI-tech/LittleDaemonLinux/releases/download/Linux/Lit
 cd LittleDaemonLinux
 ./LittleDaemonLinux
 ```
+## Download for Linux(debian)
+In order to execute it, make sure that you have both permissions(read-and-write)
+### Using *wget*
+```
+su
+wget https://github.com/XENNI-tech/LittleDaemonLinux/releases/download/Linux/LittleDaemonLinux
+./LittleDaemonLinux
+```
 
 # MIT License
 Copyright (c) 2023 Likon aka b1cc
