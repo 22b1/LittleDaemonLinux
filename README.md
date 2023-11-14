@@ -18,10 +18,10 @@ Checks for the existence of a username on various social media and web platforms
 The code is accompanied by a license (MIT License) and detailed explanations for each tool's functionality. It provides a command-line interface for users to access various cybersecurity-related utilities, making it a versatile tool for informational and diagnostic purposes.
 
 ## Download for Linux(any)
+In order to execute it, make sure that you have both permissions(read-and-write)
 ### Using *wget*
 ```
 wget https://github.com/XENNI-tech/LittleDaemonLinux/releases/download/Linux/LittleDaemonLinux
-cd LittleDaemonLinux
 ./LittleDaemonLinux
 ```
 ### Using *curl*
