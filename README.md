@@ -40,4 +40,4 @@ sudo wget https://github.com/XENNI-tech/LittleDaemonLinux/releases/download/Linu
 
 # MIT License
 Copyright (c) 2023 Likon aka b1cc
-For full licence file, please folow this [link](https://github.com/XENNI-tech/LittleDaemonLinux/blob/master/LICENCE)
+For full licence file, please folow this [link](https://raw.githubusercontent.com/XENNI-tech/LittleDaemonLinux/master/LICENCE)
